@@ -1,0 +1,24 @@
+Cannons: 
+1. Find new images 
+2. Find animation images/ Allow to skew image/part of image
+3. Add hit box 
+4. add game controls to cannons 
+
+Cannon balls:
+1. Create cannon balls class
+2. Add physics to the ball as a projectile
+3. Add collision logic
+
+
+General: 
+1.Find new background images
+2. Add obstacles 
+3. Increase screen size
+
+
+Vision for the future: 
+This is my first "serious" game in any programming language. My final vision is to allow player vs player options online. These is still far off. Looking to recreate the cannon classic game of my childhood. 
+
+
+last update:
+7/21/2019 
