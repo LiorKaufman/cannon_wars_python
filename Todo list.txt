@@ -4,21 +4,47 @@ Cannons:
 3. Add hit box 
 4. add game controls to cannons 
 
+Cannon Stories:
+1. As a user I can mpove the cannon up and down with the 'w' and 's' keys
+2. As a user I can see my cannon angle 
+3. As a user I can set my cannon ball velocity using the the 'a' and 'd' keys
+4. As a user I can see my cannon ball velocity 
+5. As a user I can shoot a cannon ball using the space key
+6. As a user if I hit the other cannon my score goes up by 1
+7. The cannon needs to have a hit box
+8. If cannon ball gets to hit box you lose
+9. As a user I cannot move the cannon angle to much as it will hit the ground
+
+
+
 Cannon balls:
 1. Create cannon balls class
 2. Add physics to the ball as a projectile
 3. Add collision logic
+
+Cannon ball stories:
+1. Cannon ball should look like a black circle
+2. Cannon ball should have an hitbox 
+3. Cannon ball should follow physics of falling
+4. Add a -9.8 velocity to the background to simulate gravity
+5. Cannon ball needs x , y coordinates
+6. Cannon ball needs a x velocity and y velocity 
+
+Terrain stories:
+1. When a cannon ball hits the terrain it should leave a dent
+2. A cannon will have collision logic with the terrain 
 
 
 General: 
 1.Find new background images
 2. Add obstacles 
 3. Increase screen size
+4. Find new cannon images 
 
 
 Vision for the future: 
-This is my first "serious" game in any programming language. My final vision is to allow player vs player options online. These is still far off. Looking to recreate the cannon classic game of my childhood. 
+This is my first "serious" game in any programming language. My final vision is to allow player vs player options online. These is still far off. Looking to recreate the cannon classic game from windows 95 and add some more features to it. 
 
 
 last update:
-7/21/2019 
+7/23/2019 
