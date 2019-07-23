@@ -17,12 +17,13 @@ clock = pygame.time.Clock()
 
 class Cannon(object):
 
-    def __init__(self, x, y, width, height, image):
+    def __init__(self, x, y, width, height, image, angle):
         self.x = x
         self.y = y
         self.width = width
         self.height = height
         self.image = image
+        self.angle = angle
 
     def draw (self, win):
         win.blit(self.image, (self.x, self.y))
@@ -33,21 +34,20 @@ bg = pygame.image.load('bg.jpg')
 bg = pygame.transform.scale(bg,(800, 600))
 cannonImg = pygame.image.load('cannon.jpg')
 # Left cannon variables for coordinates and effects
-cannonLeftImg = [cannonImg]
-cannonLeftImg[0] = pygame.transform.scale(cannonLeftImg[0],(100, 100))
 leftX = 50
 leftY = 450
-# Create a new cannon object
-leftCannon = Cannon(leftX, leftY, 100, 100, cannonLeftImg[0])
+leftAngle = 45
+cannonLeftImg = [cannonImg]
+cannonLeftImg[0] = pygame.transform.rotate(pygame.transform.scale(cannonLeftImg[0],(100, 100)),leftAngle)
 
-
+# Right cannon variables for coordinates and effects
 # Right cannon variables
-cannonRightImg = [pygame.transform.flip(cannonImg, True, False)]
-cannonRightImg[0] = pygame.transform.scale(cannonRightImg[0],(100, 100))
 rightX = 650
 rightY = 450
-# Create a new cannon Object
-rightCannon = Cannon(rightX, rightY, 100, 100, cannonRightImg[0])
+rightAngle = 270
+cannonRightImg = [pygame.transform.flip(cannonImg, True, False)]
+cannonRightImg[0] = pygame.transform.rotate((pygame.transform.scale(cannonRightImg[0],(100, 100))),rightAngle)
+
 
 def redrawGameWindow():
     # Instead of filling the windows to load an image we use blit instead of .fill
@@ -56,10 +56,13 @@ def redrawGameWindow():
     rightCannon.draw(win)
     pygame.display.update()
 
-# Right cannon variables for coordinates and effects
 
+# Create a new cannon object
+leftCannon = Cannon(leftX, leftY, 100, 100, cannonLeftImg[0], leftAngle)
+rightCannon = Cannon(rightX, rightY, 100, 100, cannonRightImg[0], rightAngle)
 
 run = True
+
 
 while run:
     # We create a clock to allow us to have 27 frames per second
@@ -69,6 +72,31 @@ while run:
             run = False
 
     keys = pygame.key.get_pressed()
+    # We add left and right variables for the key press logic
+    if keys[pygame.K_w]:
+        if leftCannon.angle < 80:
+            leftCannon.angle += 1
+        else:
+            leftCannon.angle = 80
+        leftCannon.image = pygame.transform.rotate(cannonLeftImg[0], leftCannon.angle)
+    if keys[pygame.K_s]:
+        if leftCannon.angle <= 30:
+            leftCannon.angle = 30
+        else:
+            leftCannon.angle -= 1
+        leftCannon.image = pygame.transform.rotate(cannonLeftImg[0], leftCannon.angle)
+    if keys[pygame.K_UP]:
+        if rightCannon.angle < 135:
+            rightCannon.angle += 1
+        else:
+            rightCannon.angle = 135
+        rightCannon.image = pygame.transform.rotate(cannonRightImg[0], rightCannon.angle)
+    if keys[pygame.K_DOWN]:
+        if rightCannon.angle <= 30:
+            rightCannon.angle = 30
+        else:
+            rightCannon.angle -= 1
+        rightCannon.image = pygame.transform.rotate(cannonRightImg[0], rightCannon.angle)
     redrawGameWindow()
 
 

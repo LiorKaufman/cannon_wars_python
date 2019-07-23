@@ -1,5 +1,5 @@
 Cannons: 
-1. Find new images 
+1. Find new images/ the original images maybe
 2. Find animation images/ Allow to skew image/part of image
 3. Add hit box 
 4. add game controls to cannons 
