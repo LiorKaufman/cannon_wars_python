@@ -4,6 +4,12 @@ pygame.init()
 win = pygame.display.set_mode((800,600))
 pygame.display.set_caption('Cannon Wars')
 
+# Added the font for the text surface
+font = pygame.font.Font('freesansbold.ttf', 32)
+#  added text for the left cannon
+leftCannonText = font.render('Hello World', True, (255,255,255))
+textRect = leftCannonText.get_rect()
+textRect.center = (50, 50)
 
 
 # Cannon ball variables
@@ -17,36 +23,39 @@ clock = pygame.time.Clock()
 
 class Cannon(object):
 
-    def __init__(self, x, y, width, height, image, angle):
+    def __init__(self, x, y, width, height, baseImage, turretImage):
         self.x = x
         self.y = y
         self.width = width
         self.height = height
-        self.image = image
-        self.angle = angle
+        self.baseImage = baseImage
+        self.angle = 0
+        self.turretImage = turretImage
 
     def draw (self, win):
-        win.blit(self.image, (self.x, self.y))
+        win.blit(self.baseImage, (self.x, self.y + 20))
+        win.blit(self.turretImage,(self.x + 20, self.y - 25))
 
 
 # Save the background image as a variable
 bg = pygame.image.load('bg.jpg')
 bg = pygame.transform.scale(bg,(800, 600))
-cannonImg = pygame.image.load('cannon.jpg')
 # Left cannon variables for coordinates and effects
 leftX = 50
 leftY = 450
-leftAngle = 45
-cannonLeftImg = [cannonImg]
-cannonLeftImg[0] = pygame.transform.rotate(pygame.transform.scale(cannonLeftImg[0],(100, 100)),leftAngle)
+# leftAngle = 45
+leftBaseImg = pygame.image.load('base_cannon.png')
+leftTurretImg = pygame.image.load('left_turret.png')
+# cannonLeftImg[0] = pygame.transform.rotate(pygame.transform.scale(cannonLeftImg[0],(100, 100)),leftAngle)
 
 # Right cannon variables for coordinates and effects
 # Right cannon variables
 rightX = 650
 rightY = 450
 rightAngle = 270
-cannonRightImg = [pygame.transform.flip(cannonImg, True, False)]
-cannonRightImg[0] = pygame.transform.rotate((pygame.transform.scale(cannonRightImg[0],(100, 100))),rightAngle)
+rightBaseImg = pygame.image.load('base_cannon.png')
+rightTurretImg = pygame.image.load('right_turret.png')
+
 
 
 def redrawGameWindow():
@@ -54,12 +63,13 @@ def redrawGameWindow():
     win.blit(bg, (0, 0))
     leftCannon.draw(win)
     rightCannon.draw(win)
+    win.blit(leftCannonText, textRect)
     pygame.display.update()
 
 
 # Create a new cannon object
-leftCannon = Cannon(leftX, leftY, 100, 100, cannonLeftImg[0], leftAngle)
-rightCannon = Cannon(rightX, rightY, 100, 100, cannonRightImg[0], rightAngle)
+leftCannon = Cannon(leftX, leftY, 100, 100, leftBaseImg, leftTurretImg)
+rightCannon = Cannon(rightX, rightY, 100, 100, rightBaseImg, rightTurretImg)
 
 run = True
 
@@ -74,29 +84,31 @@ while run:
     keys = pygame.key.get_pressed()
     # We add left and right variables for the key press logic
     if keys[pygame.K_w]:
-        if leftCannon.angle < 80:
+        if leftCannon.angle < 40:
             leftCannon.angle += 1
         else:
-            leftCannon.angle = 80
-        leftCannon.image = pygame.transform.rotate(cannonLeftImg[0], leftCannon.angle)
+            leftCannon.angle = 40
+        leftCannon.turretImage = pygame.transform.rotate(leftTurretImg, leftCannon.angle)
     if keys[pygame.K_s]:
-        if leftCannon.angle <= 30:
-            leftCannon.angle = 30
-        else:
+        if leftCannon.angle > 10:
             leftCannon.angle -= 1
-        leftCannon.image = pygame.transform.rotate(cannonLeftImg[0], leftCannon.angle)
+        else:
+            leftCannon.angle = 10
+        leftCannon.turretImage = pygame.transform.rotate(leftTurretImg, leftCannon.angle)
     if keys[pygame.K_UP]:
-        if rightCannon.angle < 135:
+        if rightCannon.angle > -25:
+            rightCannon.angle -= 1
+        else:
+            rightCannon.angle = -25
+        rightCannon.turretImage = pygame.transform.rotate(rightTurretImg, rightCannon.angle)
+    if keys[pygame.K_DOWN]:
+        if rightCannon.angle < 25:
             rightCannon.angle += 1
         else:
-            rightCannon.angle = 135
-        rightCannon.image = pygame.transform.rotate(cannonRightImg[0], rightCannon.angle)
-    if keys[pygame.K_DOWN]:
-        if rightCannon.angle <= 30:
-            rightCannon.angle = 30
-        else:
-            rightCannon.angle -= 1
-        rightCannon.image = pygame.transform.rotate(cannonRightImg[0], rightCannon.angle)
+            rightCannon.angle = 25
+        rightCannon.turretImage = pygame.transform.rotate(rightTurretImg, rightCannon.angle)
+
+
     redrawGameWindow()
 
 
