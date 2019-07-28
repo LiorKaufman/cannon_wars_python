@@ -26,7 +26,7 @@ class Ball(object):
         velx = math.cos(angle) * power
         vely = math.sin(angle) * power
 
-        distX = velx * time
+        distX = abs(velx) * time
         distY = (vely * time) + ((-4.9 * (time ** 2)) / 2)
 
         newx = round(distX + startx)
