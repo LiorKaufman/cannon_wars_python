@@ -29,3 +29,4 @@ class Cannon(object):
         win.blit(self.turretImage,(self.x + 20, self.y - 25))
         win.blit(self.CannonTextAngle, textRectAngle)
         win.blit(self.CannonTextPower, textRectPower)
+

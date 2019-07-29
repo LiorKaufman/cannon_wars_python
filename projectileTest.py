@@ -23,11 +23,15 @@ class Ball(object):
     @staticmethod
     def ballPath(startx, starty, power, ang, time):
         angle = ang
-        velx = math.cos(angle) * power
-        vely = math.sin(angle) * power
+        velx = abs(math.cos(angle)) * power/1.2
+        vely = abs(math.sin(angle)) * power/1.2
 
-        distX = abs(velx) * time
-        distY = (vely * time) + ((-4.9 * (time ** 2)) / 2)
+        if power > 0:
+            distX = velx * time
+            distY = (vely * time) + ((-4.9 * (time ** 2)) / 2)
+        else:
+            distX = velx * time
+            distY = -1*(vely * time) + ((-4.9 * (time ** 2)) / 2)
 
         newx = round(distX + startx)
         newy = round(starty - distY)
