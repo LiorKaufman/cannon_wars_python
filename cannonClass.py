@@ -14,19 +14,26 @@ class Cannon(object):
         self.angle = 0
         self.turretImage = turretImage
         self.power = power
-        self.CannonTextAngle = font.render(str(5), True, (255, 255, 255))
-        self.CannonTextPower = font.render(str(0), True, (255, 255, 255))
+        self.score = 0
+        self.CannonTextAngle = font.render(str(0), True, (0, 0, 0))
+        self.CannonTextPower = font.render(str(0), True, (0, 0, 0))
+        self.CannonTextScore = font.render(str(0), True, (0, 0, 0))
         self.shoot = False
 
     def draw (self, win):
-        self.CannonTextAngle = font.render(str(self.angle), True, (255, 255, 255))
-        self.CannonTextPower = font.render(str(self.power), True, (255, 255, 255))
+        self.CannonTextAngle = font.render('Angle: ' + str(self.angle), True, (0, 0, 0))
+        self.CannonTextPower = font.render('Power: ' + str(self.power), True, (0, 0, 0))
+        self.CannonTextScore = font.render('Score: ' + str(self.score), True, (0, 0, 0))
         textRectAngle = self.CannonTextAngle.get_rect()
         textRectPower = self.CannonTextPower.get_rect()
-        textRectAngle.center = (self.x + 50, self.y - 150)
-        textRectPower.center = (self.x + 100, self.y - 150)
+        textRectScore = self.CannonTextScore.get_rect()
+        textRectPower.center = (self.x + 50, self.y - 150)
+        textRectAngle.center = (self.x + 50, self.y - 100)
+        textRectScore.center = (self.x + 50, self.y - 200)
+        pygame.draw.rect(win, (222, 150, 18), (self.x, self.y, 100, 100))
         win.blit(self.baseImage, (self.x, self.y + 20))
-        win.blit(self.turretImage,(self.x + 20, self.y - 25))
+        win.blit(self.turretImage, (self.x + 20, self.y - 25))
         win.blit(self.CannonTextAngle, textRectAngle)
         win.blit(self.CannonTextPower, textRectPower)
+        win.blit(self.CannonTextScore, textRectScore)
 
