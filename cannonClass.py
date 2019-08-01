@@ -3,22 +3,25 @@ pygame.init()
 # Added font for text objects
 font = pygame.font.Font('freesansbold.ttf', 32)
 
+
+
 class Cannon(object):
 
-    def __init__(self, x, y, width, height, baseImage, turretImage, power):
+    def __init__(self, x, y, power, front, back, chas, bow, imgMap):
         self.x = x
         self.y = y
-        self.width = width
-        self.height = height
-        self.baseImage = baseImage
         self.angle = 0
-        self.turretImage = turretImage
         self.power = power
         self.score = 0
         self.CannonTextAngle = font.render(str(0), True, (0, 0, 0))
         self.CannonTextPower = font.render(str(0), True, (0, 0, 0))
         self.CannonTextScore = font.render(str(0), True, (0, 0, 0))
         self.shoot = False
+        self.front = front
+        self.back = back
+        self.chas = chas
+        self.bow = bow
+        self.imgMap = imgMap
 
     def draw (self, win):
         self.CannonTextAngle = font.render('Angle: ' + str(self.angle), True, (0, 0, 0))
@@ -27,13 +30,14 @@ class Cannon(object):
         textRectAngle = self.CannonTextAngle.get_rect()
         textRectPower = self.CannonTextPower.get_rect()
         textRectScore = self.CannonTextScore.get_rect()
-        textRectPower.center = (self.x + 50, self.y - 150)
-        textRectAngle.center = (self.x + 50, self.y - 100)
-        textRectScore.center = (self.x + 50, self.y - 200)
-        pygame.draw.rect(win, (222, 150, 18), (self.x, self.y, 100, 100))
-        win.blit(self.baseImage, (self.x, self.y + 20))
-        win.blit(self.turretImage, (self.x + 20, self.y - 25))
+        textRectPower.center = (self.x + 50, self.y - 250)
+        textRectAngle.center = (self.x + 50, self.y - 200)
+        textRectScore.center = (self.x + 50, self.y - 300)
         win.blit(self.CannonTextAngle, textRectAngle)
         win.blit(self.CannonTextPower, textRectPower)
         win.blit(self.CannonTextScore, textRectScore)
+        win.blit(self.chas, (self.imgMap[4], self.imgMap[5]))
+        win.blit(self.front, (self.imgMap[0], self.imgMap[1]))
+        win.blit(self.back, (self.imgMap[2], self.imgMap[3]))
+        win.blit(self.bow, (self.imgMap[6], self.imgMap[7]))
 

@@ -34,12 +34,9 @@ class Ball(object):
 
     @staticmethod
     def ballPath(startx, starty, power, ang, time):
-        angle = ang
-        velx = abs(math.cos(angle + math.pi)) * power/1.2
-        print(math.cos(angle))
-        print(math.sin(angle + math.pi))
-        vely = abs(math.sin(angle + math.pi)) * power/1.2
-         # Needs Refractoring angles come as radians
+        angle = ang * math.pi/180
+        velx = abs(math.cos(angle)) * power
+        vely = abs(math.sin(angle)) * power
         if power > 0:
             distX = velx * time
             distY = (vely * time) + ((-4.9 * (time ** 2)) / 2)
