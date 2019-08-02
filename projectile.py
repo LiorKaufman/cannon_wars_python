@@ -35,8 +35,8 @@ class Ball(object):
     @staticmethod
     def ballPath(startx, starty, power, ang, time):
         angle = ang * math.pi/180
-        velx = abs(math.cos(angle)) * power
-        vely = abs(math.sin(angle)) * power
+        velx = abs(math.cos(angle)) * power/1.1
+        vely = abs(math.sin(angle)) * power/1.1
         if power > 0:
             distX = velx * time
             distY = (vely * time) + ((-4.9 * (time ** 2)) / 2)
