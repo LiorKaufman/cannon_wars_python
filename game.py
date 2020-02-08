@@ -184,8 +184,6 @@ while run:
                 leftAmmo.append(Ball(round(game_width*0.1), 450, 5, (0, 0, 0)))
             if not leftCannon.shoot and not rightCannon.shoot:
                 leftCannon.shoot = True
-                x = leftAmmo[0].x
-                y = leftAmmo[0].y
                 turn = False
 
 
@@ -219,8 +217,6 @@ while run:
                 rightAmmo.append(Ball(round(game_width*0.9), 450, 5, (0, 0, 0)))
             if not rightCannon.shoot and not leftCannon.shoot:
                 rightCannon.shoot = True
-                x = rightAmmo[0].x
-                y = rightAmmo[0].y
                 turn = True
     redrawGameWindow()
 

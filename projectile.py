@@ -20,7 +20,6 @@ class Ball(object):
         explode = True
 
         while explode:
-            startPoint = hitX, hitY
             colorChoices = [(255,255,255), (255,255,0), (0,0,255) ,(255,255,255)]
             magnitude = 1
             while magnitude < 50:
@@ -28,7 +27,7 @@ class Ball(object):
                 exploding_y = hitY + random.randrange(-1*magnitude, magnitude)
                 pygame.draw.circle(win, colorChoices[random.randrange(0,4)],(exploding_x,exploding_y), random.randrange(1,5))
                 magnitude += 1
-                clock.tick(100)
+                clock.tick(75)
                 pygame.display.update()
             explode = False
 
