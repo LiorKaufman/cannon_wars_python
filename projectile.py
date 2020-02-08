@@ -20,7 +20,6 @@ class Ball(object):
         explode = True
 
         while explode:
-            startPoint = hitX, hitY
             colorChoices = [(255,255,255), (255,255,0), (0,0,255) ,(255,255,255)]
             magnitude = 1
             while magnitude < 50:
@@ -28,18 +27,15 @@ class Ball(object):
                 exploding_y = hitY + random.randrange(-1*magnitude, magnitude)
                 pygame.draw.circle(win, colorChoices[random.randrange(0,4)],(exploding_x,exploding_y), random.randrange(1,5))
                 magnitude += 1
-                clock.tick(100)
+                clock.tick(75)
                 pygame.display.update()
             explode = False
 
     @staticmethod
     def ballPath(startx, starty, power, ang, time):
-        angle = ang
-        velx = abs(math.cos(angle + math.pi)) * power/1.2
-        print(math.cos(angle))
-        print(math.sin(angle + math.pi))
-        vely = abs(math.sin(angle + math.pi)) * power/1.2
-         # Needs Refractoring angles come as radians
+        angle = ang * math.pi/180
+        velx = abs(math.cos(angle)) * power/1.1
+        vely = abs(math.sin(angle)) * power/1.1
         if power > 0:
             distX = velx * time
             distY = (vely * time) + ((-4.9 * (time ** 2)) / 2)
