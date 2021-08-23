@@ -50,7 +50,7 @@ rightX = 1050
 rightY = 450
 
 # right cannon images - uses a few images from the left cannon images
-rightChassis = pygame.image.load('./images/pieces/rightChassis.png')
+rightChassis = pygame.image.load('./images/pieces/rightchassis.png')
 rightBow = pygame.image.load('./images/pieces/rightBow.png')
 # right cannon images scaling
 rightChassis = pygame.transform.scale(rightChassis, (220, 150))
